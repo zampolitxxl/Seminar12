@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.Repository.NoteRepository;
+import com.example.demo.aspects.TrackUserAction;
 import com.example.demo.domain.Note;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @Service
 public class NoteService {
 
-    private final NoteRepository noteRepository;
+    private  final NoteRepository noteRepository;
 
+    @TrackUserAction
     public List<Note> getAllNotes(){
         return noteRepository.findAll();
     }
 
    //Добавление
+    @TrackUserAction
     public Note addNote(Note note){
         noteRepository.save(note);
         return  note;
