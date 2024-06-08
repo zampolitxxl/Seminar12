@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.Repository.NoteRepository;
 import com.example.demo.domain.Note;
+import com.example.demo.domain.Time;
+import com.example.demo.service.Adapter;
+import com.example.demo.service.FileGateway;
 import com.example.demo.service.NoteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,11 +18,22 @@ import java.util.Optional;
 //@RequestMapping("/notes")
 @AllArgsConstructor
 public class NoteController {
+    private final FileGateway fileGateway;
 
     private  final NoteService noteService;
 
+
+    //private  Time time = new Time();
+
+    private Adapter adapter = new Adapter(new Time());
+
+
+
+
     @GetMapping("/notes")
     public List<Note> getAllNotes(){
+        adapter.doSomething();
+
         return noteService.getAllNotes();
     }
 
@@ -28,6 +42,7 @@ public class NoteController {
 
     @PostMapping("/createNote")
     public Note  createNote(@RequestBody Note note) {
+        fileGateway.writeToFile(note.getName() + ".txt", note.toString());
 
         return  noteService.addNote(note);
     }

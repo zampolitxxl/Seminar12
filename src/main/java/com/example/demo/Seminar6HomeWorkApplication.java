@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.domain.Time;
+import com.example.demo.service.Adapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -9,8 +11,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Seminar6HomeWorkApplication {
 
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(Seminar6HomeWorkApplication.class, args);
+
+
 
 	}
 
